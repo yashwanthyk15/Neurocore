@@ -189,8 +189,8 @@ export default function ReadingPage() {
       const res = await api.post(`/documents/${documentId}/chunk/${currentChunkIndex}/resimplify`);
       setChunk(c => ({ ...c, simplifiedText: res.data.simplifiedText }));
       toast.success('Text has been simplified further ✨');
-    } catch {
-      toast.error('Could not re-simplify right now');
+    } catch (err) {
+      toast.error(err.response?.data?.error || 'Could not re-simplify right now');
     } finally {
       setResimplifying(false);
     }
