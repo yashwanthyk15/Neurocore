@@ -99,7 +99,7 @@ export default function Navbar() {
               color: '#fff', fontSize: 14, fontWeight: 600,
               boxShadow: 'var(--shadow-sm)'
             }}>
-              {user.name?.charAt(0).toUpperCase()}
+              {user?.name ? user.name.charAt(0).toUpperCase() : 'U'}
             </div>
             <button onClick={handleLogout} style={{
               width: 36, height: 36, borderRadius: 'var(--radius)',

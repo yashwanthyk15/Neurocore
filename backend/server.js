@@ -71,18 +71,13 @@ app.use((err, req, res, next) => {
 
 // MongoDB connection
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/neurocore')
-  .then(() => {
-    console.log('✅ MongoDB connected');
-    app.listen(PORT, () => {
-      console.log(`🚀 NeuroCore server running on port ${PORT}`);
-    });
-  })
-  .catch(err => {
-    console.error('❌ MongoDB connection failed:', err.message);
-    console.log('⚠️  Starting server without MongoDB (limited functionality)...');
-    app.listen(PORT, () => {
-      console.log(`🚀 NeuroCore server running on port ${PORT} (no DB)`);
-    });
+  .then(() => console.log('✅ MongoDB connected'))
+  .catch(err => console.error('❌ MongoDB connection failed:', err.message));
+
+if (process.env.VERCEL !== '1') {
+  app.listen(PORT, () => {
+    console.log(`🚀 NeuroCore server running on port ${PORT}`);
   });
+}
 
 module.exports = app;

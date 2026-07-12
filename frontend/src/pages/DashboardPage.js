@@ -41,7 +41,7 @@ export default function DashboardPage() {
   const fetchDocs = useCallback(async () => {
     try {
       const res = await api.get('/documents');
-      setDocuments(res.data.documents);
+      setDocuments(res.data.documents || []);
     } catch (err) {
       toast.error('Could not load documents');
     } finally {
