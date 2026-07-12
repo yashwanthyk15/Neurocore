@@ -79,5 +79,4 @@ if (process.env.VERCEL !== '1') {
     console.log(`🚀 NeuroCore server running on port ${PORT}`);
   });
 }
-
 module.exports = app;
