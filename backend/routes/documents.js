@@ -35,8 +35,10 @@ async function prefetchChunks(docId, indexes) {
   }
 }
 
-
-const uploadsDir = path.join(__dirname, '../uploads');
+const os = require('os');
+const uploadsDir = process.env.VERCEL === '1' || process.env.NODE_ENV === 'production'
+  ? path.join(os.tmpdir(), 'neurocore_uploads')
+  : path.join(__dirname, '../uploads');
 if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
 
 const storage = multer.diskStorage({
