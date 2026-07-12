@@ -346,8 +346,9 @@ router.post('/:id/chunk/:index/resimplify', authMiddleware, async (req, res) => 
 
     const { resimplifyChunk } = require('../services/gemini');
     const chunk = doc.chunks[chunkIndex];
-    const newText = await resimplifyChunk(chunk.originalText, 'easier').catch(() => chunk.simplifiedText || chunk.originalText);
+    const newText = await resimplifyChunk(chunk.originalText, 'easier');
     doc.chunks[chunkIndex].simplifiedText = newText;
+    doc.markModified('chunks');
     await doc.save();
     res.json({ simplifiedText: newText });
   } catch (err) {
