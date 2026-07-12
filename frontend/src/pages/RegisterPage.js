@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
-import { BookOpen, User, Mail, Lock, Sun, Moon } from 'lucide-react';
+import { BookOpen, User, Mail, Lock, Sun, Moon, ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 function Field({ label, icon, children }) {
@@ -58,6 +58,19 @@ export default function RegisterPage() {
       minHeight: '100vh', display: 'flex', alignItems: 'center',
       justifyContent: 'center', position: 'relative', overflow: 'hidden'
     }}>
+
+      {/* Back to Home */}
+      <Link to="/" style={{
+        position: 'fixed', top: 24, left: 24, zIndex: 50,
+        background: 'var(--bg-card)', border: '1px solid var(--border)',
+        borderRadius: 'var(--radius)', height: 44, padding: '0 16px',
+        display: 'flex', alignItems: 'center', gap: 8,
+        color: 'var(--text-secondary)', transition: 'all 0.15s ease',
+        boxShadow: 'var(--shadow-sm)', textDecoration: 'none',
+        fontSize: 14, fontWeight: 600
+      }}>
+        <ArrowLeft size={16} /> Home
+      </Link>
 
       <button onClick={toggleTheme} style={{
         position: 'fixed', top: 24, right: 24, zIndex: 50,
