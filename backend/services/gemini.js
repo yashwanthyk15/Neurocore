@@ -20,7 +20,7 @@ async function callGeminiWithRetry(prompt, isJson = false, maxRetries = 3) {
     prompt = prompt.substring(0, 30000);
   }
   
-  const modelConfig = { model: 'gemini-1.5-flash' };
+  const modelConfig = { model: 'gemini-2.5-flash' };
   if (isJson) {
     modelConfig.generationConfig = { responseMimeType: 'application/json' };
   }
